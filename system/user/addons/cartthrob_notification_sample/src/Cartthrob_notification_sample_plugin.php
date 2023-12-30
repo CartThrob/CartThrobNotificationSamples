@@ -1,6 +1,7 @@
 <?php
 
 use CartThrob\Plugins\Notification\NotificationPlugin;
+use ExpressionEngine\Service\Logger\File;
 
 class Cartthrob_notification_sample_plugin extends NotificationPlugin
 {
@@ -46,14 +47,16 @@ class Cartthrob_notification_sample_plugin extends NotificationPlugin
      * @var string[]
      */
     protected array $rules = [];
-
+    
     /**
-     * @param mixed $message
+     * @param mixed $data
      * @return bool
+     * @throws Exception
      */
-    public function deliver(mixed $message): bool
+    public function deliver(mixed $data): bool
     {
-        // go on my friend
+        $file = new File(PATH_CACHE . 'notification_' . $this->event . '_' . ee()->localize->now . '.log', ee('Filesystem'));
+        $file->log(print_r($data, true));
         return true;
     }
 }
