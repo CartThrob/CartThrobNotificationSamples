@@ -8,7 +8,7 @@ class Cartthrob_notification_sample_plugin extends NotificationPlugin
     /**
      * @var string
      */
-    public $title = 'Notification Sample';
+    public $title = 'Sample Notification';
 
     /**
      * @var string
@@ -35,9 +35,9 @@ class Cartthrob_notification_sample_plugin extends NotificationPlugin
      */
     public $settings = [
         [
-            'name' => 'file_path',
-            'short_name' => 'file_path',
-            'note' => 'ct.route.notification_sample.file_path_note',
+            'name' => 'dir_name',
+            'short_name' => 'dir_name',
+            'note' => 'ct.route.notification_sample.dir_name_note',
             'type' => 'text',
         ],
     ];
@@ -47,7 +47,7 @@ class Cartthrob_notification_sample_plugin extends NotificationPlugin
      * @var string[]
      */
     protected array $rules = [];
-    
+
     /**
      * @param mixed $data
      * @return bool
@@ -55,7 +55,15 @@ class Cartthrob_notification_sample_plugin extends NotificationPlugin
      */
     public function deliver(mixed $data): bool
     {
-        $file = new File(PATH_CACHE . 'notification_' . $this->event . '_' . ee()->localize->now . '.log', ee('Filesystem'));
+        $path = PATH_CACHE;
+        if ($this->getSetting('dir_name')) {
+            $path .= $this->getSetting('dir_name') . '/';
+            if (!is_dir($path)) {
+                mkdir($path);
+            }
+        }
+
+        $file = new File($path . 'notification_' . $this->event . '_' . ee()->localize->now . '.log', ee('Filesystem'));
         $file->log(print_r($data, true));
         return true;
     }
