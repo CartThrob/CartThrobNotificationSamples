@@ -8,5 +8,7 @@ class CartthrobBoot extends AbstractRoute
 {
     public function process()
     {
+        echo 'fdsa';
+        exit;
     }
 }
