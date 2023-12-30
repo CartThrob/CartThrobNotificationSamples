@@ -2,7 +2,7 @@
 
 use CartThrob\Plugins\Notification\NotificationPlugin;
 
-class Cartthrob_notification_sample extends NotificationPlugin
+class Cartthrob_notification_sample_plugin extends NotificationPlugin
 {
     /**
      * @var string
