@@ -1,0 +1,19 @@
+{
+  "name": "cartthrob/cartthrob_notification_sample",
+  "description": "description",
+  "minimum-stability": "stable",
+  "license": "proprietary",
+  "authors": [
+    {
+      "name": "CartThrob",
+      "email": "hello@cartthrob.com"
+    }
+  ],
+  "autoload": {
+    "classmap": [
+      "src/Cartthrob_notification_sample_plugin.php"
+    ]
+  },
+  "require": {
+  }
+}
